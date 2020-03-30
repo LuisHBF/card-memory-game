@@ -13,11 +13,21 @@ export class CardsView{
             ${ 
             this._cards.map(card => 
                 `
-                    <div class="col-sm-6 col-md-3 p-4">
-                        <div class="card text-center">
-                            <i class="${card.icon.icon}" style="color: ${card.icon.color}"></i>
-                            <h3>${card.title}</h3>
+                    <div class="col-sm-6 col-md-3 p-4 gameCardCol">
+                            <div class="gameCard text-center" onclick="this.classList.toggle('is-flipped')">
+                                <div class="gameCardTransparentLayer" id="${card.id}">
+                                </div>
+                                <div class="gameCardFace gameCardFront">
+                                <h1>🤔</h1>
+                                </div>
+                                <div class="gameCardFace gameCardBack">
+                                    <i class="${card.icon.icon}" style="color: ${card.icon.color}"></i>
+                                    <h3>${card.title}</h3>
+                                </div>
+
+                            </div>
                         </div>
+
                     </div>
                 `
             ).join('')
@@ -25,7 +35,7 @@ export class CardsView{
         `;
     }
 
-    update(cards){
+    async update(cards){
         this._cards = cards;
         const html = this._draw();
         this._element.innerHTML = html;

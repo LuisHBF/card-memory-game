@@ -6,6 +6,11 @@ export class Card{
         this._icon = icon;
         this._found = false;
         this._title = title;
+        this._id = '';
+    }
+
+    generateId(number){
+        this._id = `${this._icon.icon}-${number}`.replace(' ','_'); 
     }
 
     get icon(){
@@ -18,6 +23,10 @@ export class Card{
 
     get title(){
         return this._title;
+    }
+
+    get id(){
+        return this._id;
     }
 
     set icon(icon){

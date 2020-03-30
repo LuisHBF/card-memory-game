@@ -1,4 +1,5 @@
 import {CardsView} from '../views/CardsView.js'
+import { Card } from '../models/Card.js';
 
 export class CardController{
     
@@ -12,8 +13,8 @@ export class CardController{
     }
 
     addPairOfSameCard(card){
-        this._cards.push(card);
-        this._cards.push(card);
+        this._cards.push(new Card(card.icon, card.title));
+        this._cards.push(new Card(card.icon, card.title));
     }
 
     shuffleCards(){
@@ -21,7 +22,21 @@ export class CardController{
     }
 
     begin(){
+        this._cards.forEach((card, index) => {
+            card.generateId(index);
+        });
+
         this._view.update(this._cards);
+
+        this._cards.forEach(card => {
+            document.querySelector(`#${card.id}`).addEventListener('click', (event) => {
+                this._selectCard(event);
+            });
+        });
+    }
+
+    _selectCard(event){
+        console.log(event.target.id);
     }
 
     get cards(){
