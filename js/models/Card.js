@@ -13,6 +13,22 @@ export class Card{
         this._id = `${this._icon.icon}-${number}`.replace(' ','_'); 
     }
 
+    findElement(){
+        if(!this._id){
+            throw new Error('The Card ID must be denifed before search!');
+        }
+        return document.querySelector(`#${this._id}`)
+
+    }
+
+    dismiss(){
+        this._found = true;
+        let cardElement = this.findElement();
+        let colElement = cardElement.parentElement.parentElement;
+        colElement.classList.toggle('dismiss');
+        setTimeout(() => colElement.classList.toggle('displayNone'), 1050);
+    }
+
     get icon(){
         return this._icon;
     }

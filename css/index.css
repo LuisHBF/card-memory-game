@@ -80,3 +80,14 @@ main {
 	transition: transform 1s;
 	transform-style: preserve-3d;
 }
+
+.dismiss{
+	opacity: 0;
+	transition: 1000ms;
+	position: absolute;
+	visibility: hidden;
+}
+
+.displayNone{
+	display: none;
+}

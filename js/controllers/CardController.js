@@ -28,15 +28,42 @@ export class CardController{
 
         this._view.update(this._cards);
 
-        this._cards.forEach(card => {
-            document.querySelector(`#${card.id}`).addEventListener('click', (event) => {
-                this._selectCard(event);
-            });
-        });
+        this._addCardClickEventLisneners();
     }
 
     _selectCard(event){
-        console.log(event.target.id);
+        this._selectedCards.push(this._cards.filter((card) => {
+            if(card.id === event.target.id)
+                return card;
+        })[0]);
+
+        this._checkSelectedCards();
+    }
+
+    _checkSelectedCards(){
+        if(this._selectedCards.length == 2){
+            if(this._selectedCards[0].icon.icon === this._selectedCards[1].icon.icon){
+                this._selectedCards[0].dismiss();
+                this._selectedCards[1].dismiss();
+            }
+            this._selectedCards = [];
+            setTimeout(() => {
+                this._view.update(this._cards);
+                this._addCardClickEventLisneners();
+            }, 1030);
+        }
+
+    }
+
+    _addCardClickEventLisneners(){
+        this._cards.forEach(card => {
+            if(!card.found){
+                let cardElement = document.querySelector(`#${card.id}`);
+                cardElement.addEventListener('click', (event) => {
+                    this._selectCard(event);
+                });
+            }
+        });
     }
 
     get cards(){
