@@ -16,7 +16,7 @@ export function initialize(){
 
     gameCards.forEach(card => cardsController.addPairOfSameCard(card));
 
-    //cardsController.shuffleCards();
+    cardsController.shuffleCards();
     cardsController.begin();
 
 
