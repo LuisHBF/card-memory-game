@@ -13,10 +13,9 @@ export class CardsView{
         
             ${ 
             this._cards.map(card => {
-                if(!card.found)
                  return `
                     <div class="col-4 col-md-3 p-4 gameCardCol">
-                            <div class="gameCard text-center" onclick="this.classList.toggle('is-flipped')">
+                            <div class="gameCard text-center ${card.found ? 'invisible' : ''}" onclick="this.classList.toggle('is-flipped')">
                                 <div class="gameCardTransparentLayer" id="${card.id}">
                                 </div>
                                 <div class="gameCardFace gameCardFront">

@@ -26,7 +26,6 @@ export class Card{
         let cardElement = this.findElement();
         let colElement = cardElement.parentElement.parentElement;
         colElement.classList.toggle('dismiss');
-        setTimeout(() => colElement.classList.toggle('displayNone'), 1050);
     }
 
     get icon(){

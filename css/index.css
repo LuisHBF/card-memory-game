@@ -98,10 +98,9 @@ main {
     z-index: 2;
 }
 
-.displayNone{
-	display: none;
+.invisible{
+	visibility: 0;
 }
-
 @media only screen and (max-width: 550px) {
 	.gameCardFace i{
 	  font-size: 40px;
