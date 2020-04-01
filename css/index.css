@@ -112,7 +112,8 @@ main {
 	}
 
 	.gameCardBack{
-		padding-top: 32px;
+		padding-top: 30px;
+		word-wrap: break-word;
 	}
 
   }
