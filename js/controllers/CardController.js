@@ -37,20 +37,34 @@ export class CardController{
                 return card;
         })[0]);
 
+        console.log(this._selectedCards);
         this._checkSelectedCards();
     }
 
     _checkSelectedCards(){
-        if(this._selectedCards.length == 2){
-            if(this._selectedCards[0].icon.icon === this._selectedCards[1].icon.icon){
-                this._selectedCards[0].dismiss();
-                this._selectedCards[1].dismiss();
-            }
+
+        let resetViewAndSelectedCards = () => {
             this._selectedCards = [];
             setTimeout(() => {
                 this._view.update(this._cards);
                 this._addCardClickEventLisneners();
-            }, 1030);
+                this._view.unlockScreen();
+            }, 1030);   
+        };
+
+        if(this._selectedCards.length == 2){
+            this._view.lockScreen();
+            if(this._selectedCards[0].id === this._selectedCards[1].id){
+                this._selectedCards.pop();
+                this._view.unlockScreen();
+            } 
+            else if(this._selectedCards[0].icon.icon === this._selectedCards[1].icon.icon){
+                this._selectedCards[0].dismiss();
+                this._selectedCards[1].dismiss();
+                resetViewAndSelectedCards();
+            } else {
+                resetViewAndSelectedCards();
+            }
         }
 
     }

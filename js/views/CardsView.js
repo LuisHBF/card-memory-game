@@ -5,6 +5,7 @@ export class CardsView{
         this._cards = []; 
         this._element = element;
         this._controller = cardController;
+        this._gameLockerElement = document.querySelector('#gameLocker');
     }
 
     _draw(){
@@ -14,7 +15,7 @@ export class CardsView{
             this._cards.map(card => {
                 if(!card.found)
                  return `
-                    <div class="col-sm-6 col-md-3 p-4 gameCardCol">
+                    <div class="col-4 col-md-3 p-4 gameCardCol">
                             <div class="gameCard text-center" onclick="this.classList.toggle('is-flipped')">
                                 <div class="gameCardTransparentLayer" id="${card.id}">
                                 </div>
@@ -28,17 +29,25 @@ export class CardsView{
                             </div>
                         </div>
 
-                    </div>
+                    </div> 
                 `
             }).join('')
             }
         `;
     }
 
-    async update(cards){
+    update(cards){
         this._cards = cards;
         const html = this._draw();
         this._element.innerHTML = html;
+    }
+
+    lockScreen(){
+        this._gameLockerElement.classList.add('gameLocker');
+    }
+
+    unlockScreen(){
+        this._gameLockerElement.classList.remove('gameLocker');
     }
 
 }

@@ -88,6 +88,31 @@ main {
 	visibility: hidden;
 }
 
+
+.gameLocker{
+	width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+}
+
 .displayNone{
 	display: none;
 }
+
+@media only screen and (max-width: 550px) {
+	.gameCardFace i{
+	  font-size: 40px;
+	}
+
+	.gameCardFace h3{
+		font-size: 23px;
+	}
+
+	.gameCardBack{
+		padding-top: 32px;
+	}
+
+  }
